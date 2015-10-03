@@ -1,20 +1,18 @@
 import webapp2
+
 import jinja2
 import os
-
 from google.appengine.ext import db
 from google.appengine.api import users
 
-
-
 template_dir = os.path.dirname(__file__)
-template_dir = template_dir
-jinja_env= jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape=True)
+template_dir += "/partials"
+print template_dir
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), autoescape=True)
 
 
-class musicQueue(db.Model):
-	user = db.StringProperty(required=True)
-	queue = db.PickleProperty(required=True)
+SOUNDCLOUD_CLIENT_ID = "354f852cc7ba9c95b38ef4e21abd520b"
+
 
 
 class MainHandler(webapp2.RequestHandler):
