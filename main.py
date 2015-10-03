@@ -14,7 +14,6 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), a
 SOUNDCLOUD_CLIENT_ID = "354f852cc7ba9c95b38ef4e21abd520b"
 
 
-
 class MainHandler(webapp2.RequestHandler):
 	
 	def render_front(self, error=""):
