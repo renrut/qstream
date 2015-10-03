@@ -22,6 +22,14 @@ SOUNDCLOUD_CLIENT_SECRET = "b69dceca1b9ee7138eef75d5de3607a5"
 #token = util.prompt_for_user_token(username, scope)
 
 
+
+class userDB(db.Model):
+	userID=db.StringProperty(required=True)
+	spotifytoken = db.StringProperty(required=True)
+	soundcloudtoken = db.StringProperty(required=True)
+
+
+
 class MainHandler(webapp2.RequestHandler):
 	
 	def render_front(self, error=""):
@@ -32,7 +40,13 @@ class MainHandler(webapp2.RequestHandler):
 		template = jinja_env.get_template("login.html")
 		self.response.out.write(template.render())
 	def get(self):
-		self.render_login()
+
+		user = users.get_current_user()
+
+		if not user:
+			self.render_login()
+		else:
+			self.render_front()
 	
 	# def get(self):
 	# 	if users.get_current_user():
