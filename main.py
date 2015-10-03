@@ -36,24 +36,36 @@ class MainHandler(webapp2.RequestHandler):
 		template = jinja_env.get_template("front.html")
 		self.response.out.write(template.render())
 	
+	def render_googleLogin(self, error=""):
+		greeting = ('<a href="%s">Sign in or register</a>.' %
+                      users.create_login_url('/'))
+		self.response.out.write(greeting)
+
 	def render_login(self, error=""):
 		template = jinja_env.get_template("login.html")
 		self.response.out.write(template.render())
-	def get(self):
-
-		user = users.get_current_user()
-
-		if not user:
-			self.render_login()
-		else:
-			self.render_front()
 	
-	# def get(self):
-	# 	if users.get_current_user():
-	# 		self.render_front()
-	# 	else:
-	# 		render_login()
 
+	def get(self):
+		#getting current user
+		user = users.get_current_user()
+		
+		
+		#if user doesnt exist
+		if not user:
+			self.render_googleLogin()
+
+		else:
+			#querying gql db for user tokens for api
+			userTok = db.GqlQuery("SELECT * FROM userDB")
+       	 	myUser = userTok.get_by_id(int(post_id)) 
+			
+			#checking to see if user has tokens
+			if spotifytoken == "" or soundcloudtoken == "":
+				self.render_login()
+			else:
+				self.render_front()
+	
 
 
 
