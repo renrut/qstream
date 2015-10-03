@@ -7,11 +7,6 @@ Client Secret
 fdaa139f485b44ff93b98154261e4bd9
 
 
-
-
-
-
-
 Soundcloud:
 
 Client ID
