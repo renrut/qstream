@@ -57,13 +57,13 @@ class MainHandler(webapp2.RequestHandler):
 
 		else:
 			#querying gql db for user tokens for api
-			userTok = db.GqlQuery("SELECT * FROM userDB")
-       	 	myUser = userTok.get_by_id(int(post_id)) 
+			#userTok = db.GqlQuery("SELECT * FROM userDB")
+       	 	#myUser = userTok.get_by_id(int(post_id)) 
 			
 			#checking to see if user has tokens
-			if spotifytoken == "" or soundcloudtoken == "":
-				self.render_login()
-			else:
+			#if spotifytoken == "" or soundcloudtoken == "":
+			#	self.render_login()
+			#else:
 				self.render_front()
 	
 
