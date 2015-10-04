@@ -55,7 +55,8 @@ class MainHandler(webapp2.RequestHandler):
 		if not user:
 			self.render_googleLogin()
 
-		else:
+		self.render_login()
+		#else:
 			#querying gql db for user tokens for api
 			#userTok = db.GqlQuery("SELECT * FROM userDB")
        	 	#myUser = userTok.get_by_id(int(post_id)) 
@@ -64,7 +65,7 @@ class MainHandler(webapp2.RequestHandler):
 			#if spotifytoken == "" or soundcloudtoken == "":
 			#	self.render_login()
 			#else:
-				self.render_front()
+				#self.render_front()
 	
 
 
